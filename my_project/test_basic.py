@@ -1,5 +1,5 @@
 import os
-from my_project.ingestor import load_csv_to_db
+from ingestor import load_csv_to_db
 
 def test_database_creation():
     #check if db file exists after running loader
