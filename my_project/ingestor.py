@@ -18,6 +18,7 @@ def load_csv_to_db(csv_path, table_name, db_path):
     placeholders = ", ".join(["?"] * len(row))
     cursor.execute(f"INSERT INTO {table_name} VALUES ({placeholders})", tuple(row))
 
-  #close
+  #commit and close
+  conn.commit()
   conn.close()
   print: 'done'
