@@ -1,15 +1,21 @@
+import os
 import schema_manager
 import ingestor
 
 def run_pipeline():
-  csv_file = "data.csv"
   db_name = "production.db"
+  csv_file = "data.csv"
 
-  print("begin...")
+  print("starting pipeline")
+  #create the structure
+  print("1. setting up schema")
+  create_user_table(database_name)
 
-  create_user_table(db_name)
+  #load data
+  print("2. ingesting csv data")
+  load_csv_to_db(csv_file, "users", database_name)
 
-  ingestor.load_csv_to_db(csv_file, "users", db_name)
+  print("pipeline completed")
 
 if __name__ == "__main__":
   run_pipeline()
