@@ -1,6 +1,6 @@
 import os
-import schema_manager
-import ingestor
+from schema_manager import create_user_table
+from ingestor import load_csv_to_db
 
 def run_pipeline():
   db_name = "production.db"
