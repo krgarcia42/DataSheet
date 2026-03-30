@@ -4,7 +4,7 @@ from ingestor import load_csv_to_db
 
 def run_pipeline():
   db_name = "production.db"
-  csv_file = "data.csv"
+  csv_file = "my_project/data.csv"
 
   print("starting pipeline")
   
