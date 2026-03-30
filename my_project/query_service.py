@@ -15,4 +15,4 @@ def get_all_users(db_path):
   conn.close()
 
 if __name__ == "__main__":
-  get_all_users("my_project/production.db")
+  get_all_users("production.db")
