@@ -12,5 +12,5 @@ def execute_query(query):
   return cursor.fetchall()
 
 if __name__ == "__main__":
-  rows execute_query("SELECT * FROM users")
+  rows = execute_query("SELECT * FROM users")
   print(rows)
