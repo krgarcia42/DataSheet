@@ -20,3 +20,6 @@ jobs:
       run: |
         pytest
       working-directory: ./my_project
+
+    - name: Run the actual pipeline
+      run: python my_project/main.py
