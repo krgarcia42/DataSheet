@@ -26,3 +26,6 @@ jobs:
 
     - name: Run the query service
       run: python my_project/query_service.py
+
+    - name: Run database manager
+      run: python my_project/database_manager.py
