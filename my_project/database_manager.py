@@ -9,9 +9,9 @@ def execute_query(query):
   print(f"Executing: {query}")
   cursor.execute(query)
   conn.commit()
-  conn.close()
 
   results = cursor.fetchall()
+  conn.close()
   return results
 
 if __name__ == "__main__":
