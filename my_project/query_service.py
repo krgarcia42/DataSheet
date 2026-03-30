@@ -10,7 +10,8 @@ def get_all_users(db_path):
 
   print(f"Found {len(rows)} users")
   for row in rows:
-    print(row)
+    name, age, city = row
+    print(f"User: {name} | Age: {age} | City: {city}")
 
   conn.close()
 
