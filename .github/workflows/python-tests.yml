@@ -23,3 +23,6 @@ jobs:
 
     - name: Run the actual pipeline
       run: python my_project/main.py
+
+    - name: Run the query service
+      run: python my_project/query_service.py
