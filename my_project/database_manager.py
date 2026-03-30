@@ -1,16 +1,18 @@
 import sqlite3
 
-DEFAULT_DB = "production.db"
+DB_PATH = "production.db"
 
 def execute_query(query):
-  conn = sqlite3.connect(DEFAULT_DB)
+  conn = sqlite3.connect(DB_PATH)
   cursor = conn.cursor()
 
   print(f"Executing: {query}")
   cursor.execute(query)
+  conn.commit()
 
-  return cursor.fetchall()
+  results = cursor.fetchall()
+  return results
 
 if __name__ == "__main__":
-  rows = execute_query("SELECT * FROM users")
-  print(rows)
+  data = execute_query("SELECT * FROM users")
+  print(f"Manager found: {data}")
