@@ -9,6 +9,7 @@ def execute_query(query):
   print(f"Executing: {query}")
   cursor.execute(query)
   conn.commit()
+  conn.close()
 
   results = cursor.fetchall()
   return results
