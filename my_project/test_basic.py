@@ -10,8 +10,8 @@ def test_database_creation():
     if os.path.exists(db_name):
         os.remove(db_name)
         
-    load_csv_to_db("data.csv", "users", db_name)
     create_user_table(db_name)
+    load_csv_to_db("data.csv", "users", db_name)
 
     #check if file exists
     assert os.path.exists(db_name) == True
