@@ -6,7 +6,7 @@ def execute_query(query):
   conn = sqlite3.connect(DEFAULT_DB)
   cursor = conn.cursor()
 
-  print(f"Executing: {query})
+  print(f"Executing: {query}")
   cursor.execute(query)
 
   return cursor.fetchall()
