@@ -4,7 +4,7 @@ def create_user_table(dp_path):
   conn = sqlite3.connect(db_path)
   cursor = conn.cursor()
   #manually input from data.csv
-  cursor.execute("CREATE TABLE users (id INTEGER, name TEXT, email TEXT)")
+  cursor.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER, name TEXT, email TEXT)")
 
   conn.commit()
   conn.close()
