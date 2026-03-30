@@ -9,10 +9,6 @@ def load_csv_to_db(csv_path, table_name, db_path):
   conn = sqlite3.connect(db_path)
   cursor = conn.cursor()
 
-  #create the table
-  cols = ", ".join([f"{c} TEXT" for c in df.columns])
-  cursor.execute(f"CREATE TABLE {table_name} ({cols})")
-
   #loop and insert
   for index, row in df.iterrows():
     placeholders = ", ".join(["?"] * len(row))
