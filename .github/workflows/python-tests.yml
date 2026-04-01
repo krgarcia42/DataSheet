@@ -29,3 +29,6 @@ jobs:
 
     - name: Run database manager
       run: python my_project/database_manager.py
+
+    - name: Run LLM Adaptor
+      run: python my_project/llm_adaptor.py
