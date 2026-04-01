@@ -10,7 +10,7 @@ def ask_gemini_to_summarize(user_rows):
   prompt = "I have a database of users. Can you summarize my list?"
 
   for row in user_rows:
-    prompt += "\nUser " + row[0] + " is " + row[1] " years old."
+    prompt += "\nUser " + str(row[0]) + " is " + str(row[1]) " years old."
 
   print("Sending data to Gemini...")
   response = model.generate_content(prompt)
