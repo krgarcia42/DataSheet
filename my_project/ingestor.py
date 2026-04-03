@@ -1,5 +1,5 @@
 import pandas as pd
-from database_manager import execute_query
+from my_project.database_manager import execute_query
 
 def ingest_data(file_path):
   print("Ingesting data from {file_path}")
