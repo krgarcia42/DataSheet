@@ -1,4 +1,4 @@
-from database_manager import execute_query
+from my_project.database_manager import execute_query
 
 def validate_and_execute(sql_query):
   if not sql_query.strip().upper().startswith("SELECT"):
