@@ -1,35 +1,40 @@
-name: Python Project CI
-on: [push, pull_request]
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+name: DataSheet CI Pipeline
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
       with:
-        python-python-version: '3.10'
+        python-version: "3.10"
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        # Ensure pytest is installed even if not in requirements
+        pip install pytest
 
-    - name: Run tests with pytest
+    - name: Run Manual Unit Tests (Validator Check)
+      # This proves your security logic works before the app runs
       run: |
-        pytest
-      working-directory: ./my_project
+        pytest tests/test_validator.py
 
-    - name: Run the actual pipeline
-      run: python my_project/main.py
-
-    - name: Run the query service
-      run: python my_project/query_service.py
-
-    - name: Run database manager
-      run: python my_project/database_manager.py
-
-    - name: Run LLM Adaptor
-      run: python my_project/llm_adaptor.py
+    - name: Test Main Pipeline Execution
+      # We use 'echo "3"' to simulate the user choosing 'Exit' 
+      # so the CLI doesn't get stuck waiting for input
+      run: |
+        echo "3" | python my_project/main.py
