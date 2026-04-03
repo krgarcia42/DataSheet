@@ -1,14 +1,17 @@
-import sqlite3
+from database_manager import execute_query
 
-def create_user_table(db_path):
-  conn = sqlite3.connect(db_path)
-  cursor = conn.cursor()
-  #manually input from data.csv
-  cursor.execute("CREATE TABLE IF NOT EXISTS users (name TEXT, age INTEGER, city TEXT)")
-
-  conn.commit()
-  conn.close()
-  print("Schema created successfully")
+def initialize_db():
+  #only create structure for SQlite
+  create_table_query: """
+  CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        age INTEGER NOT NULL,
+        city TEXT NOT NULL
+    );
+    """
+  execute_query(create_table_query)
+  print("Schema Initialized"
 
 if __name__ == "__main__":
-  create_user_table("test.db")
+  initialize_db()
