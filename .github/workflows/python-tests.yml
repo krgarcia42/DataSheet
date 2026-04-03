@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-permissions:
-  contents: read
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,18 +21,20 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        # Install pandas and google-generativeai from your requirements
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        # Ensure pytest is available for the test step
-        pip install pytest
+        pip install pytest google-generativeai pandas
 
-    - name: Run Manual Unit Tests (Security Validator)
-      # This satisfies the rubric requirement to run pytest on your manual tests
+    - name: Run Manual Unit Tests
+      # We set PYTHONPATH to the root so pytest can resolve 'from my_project import ...'
+      env:
+        PYTHONPATH: ${{ github.workspace }}
       run: |
         pytest tests/test_validator.py
 
     - name: Run Main Pipeline
-      # We use 'echo "3"' to select the 'Exit' option in your CLI loop.
-      # This allows the Action to verify the code runs without getting stuck.
+      # We use the -m flag to run my_project.main as a module.
+      # This is the "Gold Standard" for modular projects to fix import errors.
+      env:
+        PYTHONPATH: ${{ github.workspace }}
       run: |
-        echo "3" | python my_project/main.py
+        echo "3" | python -m my_project.main
