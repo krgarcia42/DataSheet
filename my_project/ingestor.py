@@ -10,7 +10,7 @@ def ingest_data(file_path):
     #read external CSV
     df = pd.read_csv(file_path)
     #iterate through df
-    for index, row in df.iterrows()
+    for index, row in df.iterrows():
       query = f"INSERT INTO users (name, age, city) VALUES ('{row['name']}', {row['age']}, '{row['city']}')"
       execute_query(query)
     print("Succesfully ingested {len(df)} rows")
