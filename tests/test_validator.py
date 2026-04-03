@@ -13,3 +13,9 @@ def test_validator_blocks_wrong_table():
   result = validate_and_execute(hallucinated_sql)
   assert "unknown table" in result.lower()
 
+def test_validator_allows_good_sql():
+  #legitimate LLM-created sql
+  good_sql = "SELECT name, age FROM users WHERE age > 25"
+  result = validate_and_execute(good_sql)
+  #should return data rather than error
+  assert isinstance(result, list)
