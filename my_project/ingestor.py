@@ -1,20 +1,24 @@
 import pandas as pd
-import sqlite3
+from database_manager import execute_query
 
-def load_csv_to_db(csv_path, table_name, db_path):
-  # read the csv file
-  df = pd.read_csv(csv_path)
+def ingest_data(file_path):
+  print("Ingesting data from {file_path}")
 
-  # connect to database
-  conn = sqlite3.connect(db_path)
-  cursor = conn.cursor()
+  try:
+    #read external CSV
+    df = pd.read_csv(file_path)
+    #iterate through df
+    for index, row in df.iterrows()
+      query = f"""
+      INSERT INTO users (name, age, city) 
+      VALUES ('{row['name']}', {row['age']}, '{row['city']}')
+      """
+      execute_query(query)
+    print("Succesfully ingested {len(df)} rows")
 
-  #loop and insert
-  for index, row in df.iterrows():
-    placeholders = ", ".join(["?"] * len(row))
-    cursor.execute(f"INSERT INTO {table_name} VALUES ({placeholders})", tuple(row))
+except Exception as e:
+  print("Error during ingestion: {e}")
 
-  #commit and close
-  conn.commit()
-  conn.close()
-  print: 'done'
+if __name__ = "__main__":
+  #test
+  ingest_data("my_project/data.csv")
