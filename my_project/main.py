@@ -1,22 +1,23 @@
-import os
-from schema_manager import create_user_table
-from ingestor import load_csv_to_db
+from schema_manager import initialize_db
+from query_service import get_all_users
+from llm_adaptor import ask_gemini_to_summarize
 
 def run_pipeline():
-  db_name = "production.db"
-  csv_file = "my_project/data.csv"
+  print("1. Initializing Database")
+  initialize_db()
 
-  print("starting pipeline")
-  
-  #create the structure
-  print("1. setting up schema")
-  create_user_table(db_name)
+  print("2. Fetching User Data")
+  users = get_all_users()
 
-  #load data
-  print("2. ingesting csv data")
-  load_csv_to_db(csv_file, "users", db_name)
+  if not users:
+    print("No users found. Pipeline stopping")
+    return
 
-  print("pipeline completed")
+  print("3. Sending to Gemini")
+  summary = ask_gemini_to_summarize(users)
+
+  print("Final Summary")
+  print(summary)
 
 if __name__ == "__main__":
   run_pipeline()
