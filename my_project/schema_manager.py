@@ -2,7 +2,7 @@ from my_project.database_manager import execute_query
 
 def initialize_db():
   #only create structure for SQlite
-  create_table_query: """
+  create_table_query = """
   CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
