@@ -1,12 +1,18 @@
 from database_manager import execute_query
 
-def get_all_users():
-  query = "SELECT * from users"
-  #1. execute query
-  rows = execute_query(query)
-  #2. return rows to main.py
-  return rows
-  
-if __name__ == "__main__":
-  data = get_all_users()
-  print(data)
+def validate_and_execute(sql_query):
+  if not sql_query.strip().upper().startswith("SELECT"):
+    return "Error: Only SELECT queries allowed for security"
+
+  if "users" not in sql_query.lower():
+    return "Error: Query references an unknown table"
+
+  try:
+    rows = execute_query(sql_query)
+    return rows
+  except Exception as e:
+    return f"SQL Error: {e}"
+
+def get_table_schema():
+  #needed for the LLM Adapter
+  return "Table: users (columns: name, age, city)"
