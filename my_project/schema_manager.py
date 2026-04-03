@@ -11,7 +11,7 @@ def initialize_db():
     );
     """
   execute_query(create_table_query)
-  print("Schema Initialized"
+  print("Schema Initialized")
 
 if __name__ == "__main__":
   initialize_db()
