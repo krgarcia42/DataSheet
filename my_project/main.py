@@ -1,6 +1,6 @@
 from schema_manager import initialize_db
 from ingestor import ingest_data
-from query_service import get_all_users
+from query_service import validate_and_execute, get_table_schema
 from llm_adaptor import ask_gemini_to_summarize
 
 def run_pipeline():
@@ -12,18 +12,28 @@ def run_pipeline():
   print("2. Ingesting Data")
   ingest_data("my_project/data.csv")
 
-  print("3. Fetching User Data")
-  users = get_all_users()
+  while True:
+    print("\nOptions: [1] Run SQL  [2] Ask AI  [3] Exit")
+    choice = input("Select an option: ")
 
-  if not users:
-    print("No users found. Pipeline stopping")
-    return
+    if choice == "1":
+      sql = input("Enter SQL query: ")
+      results = validate_and_execute(sql)
+      print(f"Results: {results}")
 
-  print("4. Sending to Gemini")
-  summary = ask_gemini_to_summarize(users)
+    elif choice == "2":
+      user_prompt = input("What do you want to know? ")
+      #LLM Adaptor translates prompt to SQL
+      schema = get_table_schema()
+      generated_sql = ask_gemini_to_sql(user_prompt, schema)
+      print(f"AI suggested SQL: {generated_sql}")
 
-  print("Final Summary")
-  print(summary)
+      #LLM output must be validated
+      results = validate_and_execute(generated_sql)
+      print(f"AI Results: {results}")
+
+    elif choice == "3":
+      break
 
 if __name__ == "__main__":
   run_pipeline()
