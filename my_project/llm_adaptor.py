@@ -1,26 +1,21 @@
-import google.generativeai as genai
+import google import genai
 
 API_KEY = "AIzaSyBgQHfDCG1iIxUENF9jyupSAyLUFqjcwDc"
 # FORCE STABLE CONFIGURATION
 genai.configure(api_key=API_KEY)
 
 def ask_gemini_to_sql(user_prompt, schema):
-    model = genai.GenerativeModel("gemini-1.5-flash-latest")
-
-    prompt = f"""
-    You are an SQL generator. 
-    Schema: {schema}
-    Request: {user_prompt}
+    client = genai.Client(api_key=API_KEY)
     
-    Return only the SQL code. No markdown. No explanation.
-    """
+    prompt = f"Given schema: {schema}, write a SQLite query for: {user_prompt}. Return ONLY SQL."
 
     try:
-        # specify the model name again here to be safe
-        response = model.generate_content(prompt)
-        sql = response.text.strip()
-        # Remove any markdown formatting if the AI adds it
-        return sql.replace("```sql", "").replace("```", "").strip()
+        # The new library uses 'gemini-1.5-flash'
+        response = client.models.generate_content(
+            model="gemini-1.5-flash", 
+            contents=prompt
+        )
+        return response.text.replace("```sql", "").replace("```", "").strip()
     except Exception as e:
         print(f"DEBUG: Gemini Error: {e}")
-        return "SELECT * FROM users" # Safety fallback
+        return "SELECT * FROM users"
