@@ -1,4 +1,4 @@
-from my_project.database_manager import execute_query
+from .database_manager import execute_query
 
 def initialize_db():
   #only create structure for SQlite
