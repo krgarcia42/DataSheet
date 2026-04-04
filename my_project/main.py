@@ -1,7 +1,7 @@
-from my_project.schema_manager import initialize_db
-from my_project.ingestor import ingest_data
-from my_project.query_service import validate_and_execute, get_table_schema
-from my_project.llm_adaptor import ask_gemini_to_sql
+from .schema_manager import initialize_db
+from .ingestor import ingest_data
+from .query_service import validate_and_execute, get_table_schema
+from .llm_adaptor import ask_gemini_to_sql
 
 def run_pipeline():
   #set up SQLite
