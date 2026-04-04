@@ -3,6 +3,7 @@ from google import genai
 API_KEY = "AIzaSyALcW5U8S9J4T-tbVR6Pr1s7kheFu9CfyM"
 
 def ask_gemini_to_sql(user_prompt, schema):
+    # Use the v1 stable endpoint for your paid account
     client = genai.Client(
         api_key=API_KEY,
         http_options={'api_version': 'v1'}
@@ -11,9 +12,9 @@ def ask_gemini_to_sql(user_prompt, schema):
     prompt = f"Given schema: {schema}, write a SQLite query for: {user_prompt}. Return ONLY SQL."
 
     try:
-        # ADDING 'models/' BEFORE THE NAME
+        # UPDATED FOR APRIL 2026: Using the Gemini 3 series
         response = client.models.generate_content(
-            model="models/gemini-1.5-pro", 
+            model="gemini-3-flash-preview", 
             contents=prompt
         )
         return response.text.replace("```sql", "").replace("```", "").strip()
