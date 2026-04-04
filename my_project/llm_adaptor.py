@@ -13,7 +13,7 @@ def ask_gemini_to_sql(user_prompt, schema):
     try:
         # ADDING 'models/' BEFORE THE NAME
         response = client.models.generate_content(
-            model="models/gemini-1.5-flash", 
+            model="models/gemini-1.5-pro", 
             contents=prompt
         )
         return response.text.replace("```sql", "").replace("```", "").strip()
