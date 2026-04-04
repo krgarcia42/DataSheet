@@ -25,15 +25,12 @@ jobs:
         pip install pytest google-generativeai pandas
 
     - name: Run Manual Unit Tests
-      # We set PYTHONPATH to the root so pytest can resolve 'from my_project import ...'
       env:
         PYTHONPATH: ${{ github.workspace }}
       run: |
         pytest tests/test_validator.py
 
     - name: Run Main Pipeline
-      # We use the -m flag to run my_project.main as a module.
-      # This is the "Gold Standard" for modular projects to fix import errors.
       env:
         PYTHONPATH: ${{ github.workspace }}
       run: |
