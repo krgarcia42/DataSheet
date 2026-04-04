@@ -1,6 +1,7 @@
 from google import genai
 
 API_KEY = "AIzaSyALcW5U8S9J4T-tbVR6Pr1s7kheFu9CfyM"
+
 def ask_gemini_to_sql(user_prompt, schema):
     # FORCE v1 (Production)
     client = genai.Client(
@@ -11,8 +12,6 @@ def ask_gemini_to_sql(user_prompt, schema):
     prompt = f"Given schema: {schema}, write a SQLite query for: {user_prompt}. Return ONLY SQL."
 
     try:
-        # 2026 STABLE NAME: The '-preview' suffix is gone for production v1
-        # We use 'gemini-3-flash' which is the current workhorse
         response = client.models.generate_content(
             model="gemini-3-flash", 
             contents=prompt
