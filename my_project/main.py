@@ -10,7 +10,7 @@ def run_pipeline():
 
   #ingest with pandas
   print("2. Ingesting Data")
-  ingest_data("my_project/data.csv")
+  ingest_data("data.csv")
 
   while True:
     print("\nOptions: [1] Run SQL  [2] Ask AI  [3] Exit")
