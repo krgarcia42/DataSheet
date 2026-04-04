@@ -22,8 +22,8 @@ pip install pandas google-generativeai pytest
 ```
 
 ### 2. API Configuration
-1.  I obtained a Gemini API Key from [Google AI Studio](https://aistudio.google.com/).
-2.  Replaced the value of `API_KEY` on Line 3 of `my_project/llm_adaptor.py` with your actual key.
+1.  Obtain a Gemini API Key from [Google AI Studio](https://aistudio.google.com/) or use the current one.
+2.  Replace the value of `API_KEY` on Line 3 of `my_project/llm_adaptor.py` with your actual key if needed.
 
 ### 3. Running the Application
 Launch the program from the root directory using the module flag:
