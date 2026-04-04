@@ -13,7 +13,7 @@ def ask_gemini_to_sql(user_prompt, schema):
 
     try:
         response = client.models.generate_content(
-            model="gemini-3-flash", 
+            model="gemini-2-flash", 
             contents=prompt
         )
         return response.text.replace("```sql", "").replace("```", "").strip()
