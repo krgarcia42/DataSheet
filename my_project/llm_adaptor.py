@@ -1,4 +1,4 @@
-import google import genai
+from google import genai
 
 API_KEY = "AIzaSyBgQHfDCG1iIxUENF9jyupSAyLUFqjcwDc"
 # FORCE STABLE CONFIGURATION
