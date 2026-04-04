@@ -1,6 +1,6 @@
-from my_project.query_service import validate_and_execute
-from my_project.schema_manager import initialize_db
-from my_project.ingestor import ingest_data
+from .query_service import validate_and_execute
+from .schema_manager import initialize_db
+from .ingestor import ingest_data
 
 def test_validator_blocks_malicious_sql():
   #LLM mistakenly includes a DELETE statement
