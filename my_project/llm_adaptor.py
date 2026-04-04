@@ -1,6 +1,5 @@
 from google import genai
 
-# Your key from the screenshot
 API_KEY = "AIzaSyBgQHfDCG1iIxUENF9jyupSAyLUFqjcwDc"
 
 def ask_gemini_to_sql(user_prompt, schema):
