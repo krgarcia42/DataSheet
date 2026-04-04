@@ -10,7 +10,7 @@ def ask_gemini_to_sql(user_prompt, schema):
     try:
         # The new library uses 'gemini-1.5-flash'
         response = client.models.generate_content(
-            model="gemini-1.5-flash", 
+            model="gemini-pro", 
             contents=prompt
         )
         return response.text.replace("```sql", "").replace("```", "").strip()
