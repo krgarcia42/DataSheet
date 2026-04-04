@@ -32,6 +32,7 @@ python -m my_project.main
 ```
 * **Option 1 (Run SQL):** Directly execute SQL statements against the `users` table.
 * **Option 2 (Ask AI):** Type a natural language question (e.g., *"Who lives in New York?"*). The system will show you the AI-suggested SQL before displaying the validated results.
+* * **Option 3 (Exit)**
 
 ---
 
