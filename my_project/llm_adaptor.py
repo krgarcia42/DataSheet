@@ -1,6 +1,6 @@
 import google.generativeai as genai
 
-API_KEY = "MY_GEMINI_API_KEY"
+API_KEY = "AIzaSyBgQHfDCG1iIxUENF9jyupSAyLUFqjcwDc"
 genai.configure(api_key = API_KEY)
 
 def ask_gemini_to_sql(user_prompt, schema):
