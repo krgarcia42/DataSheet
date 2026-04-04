@@ -1,16 +1,15 @@
 from google import genai
 
 API_KEY = "AIzaSyBgQHfDCG1iIxUENF9jyupSAyLUFqjcwDc"
-# FORCE STABLE CONFIGURATION
-genai.configure(api_key=API_KEY)
 
 def ask_gemini_to_sql(user_prompt, schema):
+    # We pass the API_KEY directly into the Client here
     client = genai.Client(api_key=API_KEY)
     
     prompt = f"Given schema: {schema}, write a SQLite query for: {user_prompt}. Return ONLY SQL."
 
     try:
-        # The new library uses 'gemini-1.5-flash'
+        # Notice the new 'client.models.generate_content' syntax
         response = client.models.generate_content(
             model="gemini-1.5-flash", 
             contents=prompt
