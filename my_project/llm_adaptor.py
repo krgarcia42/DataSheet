@@ -4,7 +4,7 @@ API_KEY = "AIzaSyBgQHfDCG1iIxUENF9jyupSAyLUFqjcwDc"
 genai.configure(api_key = API_KEY)
 
 def ask_gemini_to_sql(user_prompt, schema):
-    model = genai.GenerativeModel("gemini-pro")
+    model = genai.GenerativeModel("gemini-1.5-flash")
     prompt = f"Given the schema {schema}, write a SQLite query for: {user_prompt}. Return only SQL."
 
     try:
