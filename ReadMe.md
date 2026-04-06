@@ -50,3 +50,9 @@ This project uses **GitHub Actions** to run the test suite automatically on ever
 * **`test_validator_blocks_malicious_sql`**: Confirms that "piggybacked" commands like `DELETE` are blocked.
 * **`test_validator_blocks_wrong_table`**: Verifies that if the LLM hallucinates a table name (e.g., `employees`), the system rejects the query.
 * **`test_validator_allows_good_sql`**: Ensures that valid queries return the expected data format (a list of results).
+
+---
+
+## Video
+
+[Presentation.MOV.zip](https://github.com/user-attachments/files/26492066/Presentation.MOV.zip)
